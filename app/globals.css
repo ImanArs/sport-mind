@@ -1,0 +1,247 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated color scheme to blue theme inspired by 1xbet */
+  --background: oklch(0.97 0.02 240); /* Light blue background #F0F4FF */
+  --foreground: oklch(0.15 0.05 240); /* Dark blue text */
+  --card: oklch(1 0 0); /* White cards */
+  --card-foreground: oklch(0.15 0.05 240); /* Dark blue text on cards */
+  --popover: oklch(1 0 0); /* White popover */
+  --popover-foreground: oklch(0.15 0.05 240); /* Dark blue popover text */
+  --primary: oklch(0.55 0.15 240); /* Primary blue #007BFF */
+  --primary-foreground: oklch(1 0 0); /* White text on primary */
+  --secondary: oklch(0.75 0.12 200); /* Sky blue #00BFFF */
+  --secondary-foreground: oklch(1 0 0); /* White text on secondary */
+  --muted: oklch(0.95 0.02 240); /* Very light blue muted */
+  --muted-foreground: oklch(0.45 0.08 240); /* Medium blue muted text */
+  --accent: oklch(0.85 0.15 80); /* Gold accent #FFD700 */
+  --accent-foreground: oklch(0.15 0.05 240); /* Dark blue on accent */
+  --destructive: oklch(0.55 0.25 25); /* Red for losses */
+  --destructive-foreground: oklch(1 0 0); /* White on destructive */
+  --border: oklch(0.4 0.08 240); /* Darker blue borders #0056b3 */
+  --input: oklch(1 0 0); /* White input background */
+  --ring: oklch(0.55 0.15 240 / 0.5); /* Primary blue ring with opacity */
+  --chart-1: oklch(0.55 0.15 240); /* Primary blue */
+  --chart-2: oklch(0.75 0.12 200); /* Sky blue */
+  --chart-3: oklch(0.85 0.15 80); /* Gold */
+  --chart-4: oklch(0.4 0.08 240); /* Dark blue */
+  --chart-5: oklch(0.55 0.25 25); /* Red */
+  --radius: 1rem; /* Increased radius for cartoon style */
+  --sidebar: oklch(0.55 0.15 240);
+  --sidebar-foreground: oklch(1 0 0);
+  --sidebar-primary: oklch(0.4 0.08 240);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.85 0.15 80);
+  --sidebar-accent-foreground: oklch(0.15 0.05 240);
+  --sidebar-border: oklch(0.4 0.08 240);
+  --sidebar-ring: oklch(0.55 0.15 240 / 0.5);
+}
+
+.dark {
+  --background: oklch(0.15 0.05 240);
+  --foreground: oklch(0.97 0.02 240);
+  --card: oklch(0.2 0.05 240);
+  --card-foreground: oklch(0.97 0.02 240);
+  --popover: oklch(0.2 0.05 240);
+  --popover-foreground: oklch(0.97 0.02 240);
+  --primary: oklch(0.65 0.15 240);
+  --primary-foreground: oklch(0.15 0.05 240);
+  --secondary: oklch(0.3 0.08 240);
+  --secondary-foreground: oklch(0.97 0.02 240);
+  --muted: oklch(0.25 0.05 240);
+  --muted-foreground: oklch(0.7 0.08 240);
+  --accent: oklch(0.3 0.08 240);
+  --accent-foreground: oklch(0.97 0.02 240);
+  --destructive: oklch(0.45 0.2 25);
+  --destructive-foreground: oklch(0.6 0.25 25);
+  --border: oklch(0.3 0.05 240);
+  --input: oklch(0.3 0.05 240);
+  --ring: oklch(0.5 0.12 240);
+  --chart-1: oklch(0.55 0.25 260);
+  --chart-2: oklch(0.7 0.17 160);
+  --chart-3: oklch(0.77 0.19 70);
+  --chart-4: oklch(0.63 0.27 300);
+  --chart-5: oklch(0.65 0.25 16);
+  --sidebar: oklch(0.2 0.05 240);
+  --sidebar-foreground: oklch(0.97 0.02 240);
+  --sidebar-primary: oklch(0.55 0.25 260);
+  --sidebar-primary-foreground: oklch(0.97 0.02 240);
+  --sidebar-accent: oklch(0.3 0.05 240);
+  --sidebar-accent-foreground: oklch(0.97 0.02 240);
+  --sidebar-border: oklch(0.3 0.05 240);
+  --sidebar-ring: oklch(0.5 0.12 240);
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    /* Added mobile-first responsive design */
+    @apply min-h-screen overflow-x-hidden;
+  }
+
+  /* Added cartoon-style button base styles */
+  .cartoon-button {
+    @apply relative rounded-2xl font-bold text-lg;
+    @apply bg-gradient-to-b from-primary to-primary/80;
+    @apply border-2 border-border;
+    @apply shadow-lg shadow-primary/20;
+    @apply transition-all duration-200 ease-out;
+    @apply active:scale-95 active:shadow-inner;
+  }
+
+  .cartoon-button:hover {
+    @apply scale-105 shadow-xl shadow-primary/30;
+  }
+
+  /* Added cartoon-style card base styles */
+  .cartoon-card {
+    @apply relative rounded-2xl;
+    @apply bg-gradient-to-b from-card to-card/95;
+    @apply border-2 border-border;
+    @apply shadow-lg;
+    @apply transition-all duration-300 ease-out;
+  }
+
+  /* Added stagger animation utilities */
+  .stagger-item {
+    @apply opacity-0 translate-y-4;
+    animation: slideInUp 0.6s ease-out forwards;
+  }
+
+  .stagger-item:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .stagger-item:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .stagger-item:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .stagger-item:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  .stagger-item:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+  .stagger-item:nth-child(6) {
+    animation-delay: 0.6s;
+  }
+  .stagger-item:nth-child(7) {
+    animation-delay: 0.7s;
+  }
+  .stagger-item:nth-child(8) {
+    animation-delay: 0.8s;
+  }
+  .stagger-item:nth-child(9) {
+    animation-delay: 0.9s;
+  }
+  .stagger-item:nth-child(10) {
+    animation-delay: 1.0s;
+  }
+}
+
+@keyframes slideInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Added flip animation for memory cards */
+@keyframes flipCard {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(90deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+.flip-animation {
+  animation: flipCard 0.6s ease-in-out;
+}
+
+/* Added bounce animation for countdown */
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: translateY(100px) scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-10px) scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes bounceOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) scale(0.3);
+  }
+}
+
+.bounce-in {
+  animation: bounceIn 0.5s ease-out;
+}
+
+.bounce-out {
+  animation: bounceOut 0.3s ease-in forwards;
+}
