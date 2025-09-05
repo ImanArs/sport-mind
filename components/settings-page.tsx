@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Shield, FileText, HelpCircle, Share2, X } from "lucide-react"
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Shield, FileText, HelpCircle, Share2, X } from "lucide-react";
 
-type ModalType = "privacy" | "terms" | "support" | "share" | null
+type ModalType = "privacy" | "terms" | "support" | "share" | null;
 
 export function SettingsPage() {
-  const [activeModal, setActiveModal] = useState<ModalType>(null)
+  const [activeModal, setActiveModal] = useState<ModalType>(null);
 
   const settingsItems = [
     {
@@ -32,17 +32,17 @@ export function SettingsPage() {
       id: "share" as const,
       title: "Share",
       icon: Share2,
-      description: "Tell friends about SportMind",
+      description: "Tell friends about One Lead",
     },
-  ]
+  ];
 
   const handleItemClick = (id: ModalType) => {
-    setActiveModal(id)
-  }
+    setActiveModal(id);
+  };
 
   const handleCloseModal = () => {
-    setActiveModal(null)
-  }
+    setActiveModal(null);
+  };
 
   return (
     <div className="min-h-screen bg-background p-4">
@@ -53,14 +53,16 @@ export function SettingsPage() {
         transition={{ duration: 0.6 }}
         className="text-center mb-8 pt-4"
       >
-        <h1 className="text-4xl font-black text-primary mb-2">SportMind</h1>
-        <p className="text-muted-foreground font-semibold">Settings and Information</p>
+        <h1 className="text-4xl font-black text-primary mb-2">One Lead</h1>
+        <p className="text-muted-foreground font-semibold">
+          Settings and Information
+        </p>
       </motion.div>
 
       {/* Settings Items */}
       <div className="max-w-md mx-auto space-y-4">
         {settingsItems.map((item, index) => {
-          const Icon = item.icon
+          const Icon = item.icon;
           return (
             <motion.button
               key={item.id}
@@ -75,12 +77,16 @@ export function SettingsPage() {
                   <Icon className="w-6 h-6 text-primary-foreground" />
                 </div>
                 <div className="flex-1 text-left">
-                  <h3 className="text-lg font-black text-card-foreground">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground font-semibold">{item.description}</p>
+                  <h3 className="text-lg font-black text-card-foreground">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground font-semibold">
+                    {item.description}
+                  </p>
                 </div>
               </div>
             </motion.button>
-          )
+          );
         })}
       </div>
 
@@ -92,8 +98,12 @@ export function SettingsPage() {
         className="mt-8 text-center"
       >
         <div className="cartoon-card p-4 max-w-md mx-auto">
-          <p className="text-sm text-muted-foreground font-semibold mb-2">SportMind v1.0</p>
-          <p className="text-xs text-muted-foreground">Train your memory and attention with sports-themed games</p>
+          <p className="text-sm text-muted-foreground font-semibold mb-2">
+            One Lead v1.0
+          </p>
+          <p className="text-xs text-muted-foreground">
+            Train your memory and attention with sports-themed games
+          </p>
         </div>
       </motion.div>
 
@@ -102,19 +112,21 @@ export function SettingsPage() {
         {activeModal && (
           <SettingsModal
             type={activeModal}
-            title={settingsItems.find((item) => item.id === activeModal)?.title || ""}
+            title={
+              settingsItems.find((item) => item.id === activeModal)?.title || ""
+            }
             onClose={handleCloseModal}
           />
         )}
       </AnimatePresence>
     </div>
-  )
+  );
 }
 
 interface SettingsModalProps {
-  type: ModalType
-  title: string
-  onClose: () => void
+  type: ModalType;
+  title: string;
+  onClose: () => void;
 }
 
 function SettingsModal({ type, title, onClose }: SettingsModalProps) {
@@ -126,24 +138,27 @@ function SettingsModal({ type, title, onClose }: SettingsModalProps) {
             <h3 className="text-lg font-bold">Privacy Policy</h3>
             <div className="space-y-3 font-semibold">
               <p>
-                <strong>Data Collection:</strong> SportMind stores your game progress, scores, and preferences locally
-                on your device. We do not collect or transmit personal data to external servers.
+                <strong>Data Collection:</strong> One Lead stores your game
+                progress, scores, and preferences locally on your device. We do
+                not collect or transmit personal data to external servers.
               </p>
               <p>
-                <strong>Local Storage:</strong> Your game data, including levels completed, high scores, and profile
-                information, is saved in your browser's local storage.
+                <strong>Local Storage:</strong> Your game data, including levels
+                completed, high scores, and profile information, is saved in
+                your browser's local storage.
               </p>
               <p>
-                <strong>No Tracking:</strong> We do not use cookies, analytics, or tracking technologies to monitor your
-                gameplay or behavior.
+                <strong>No Tracking:</strong> We do not use cookies, analytics,
+                or tracking technologies to monitor your gameplay or behavior.
               </p>
               <p>
-                <strong>Data Security:</strong> Since all data is stored locally, you have full control over your
-                information. Clearing your browser data will remove all game progress.
+                <strong>Data Security:</strong> Since all data is stored
+                locally, you have full control over your information. Clearing
+                your browser data will remove all game progress.
               </p>
             </div>
           </div>
-        )
+        );
 
       case "terms":
         return (
@@ -151,24 +166,27 @@ function SettingsModal({ type, title, onClose }: SettingsModalProps) {
             <h3 className="text-lg font-bold">Terms of Use</h3>
             <div className="space-y-3 font-semibold">
               <p>
-                <strong>Game Usage:</strong> SportMind is provided for entertainment and educational purposes. Use the
-                app responsibly and at your own discretion.
+                <strong>Game Usage:</strong> One Lead is provided for
+                entertainment and educational purposes. Use the app responsibly
+                and at your own discretion.
               </p>
               <p>
-                <strong>Content:</strong> All game content, including icons and designs, are used under appropriate
-                licenses. No copyrighted material is intentionally included.
+                <strong>Content:</strong> All game content, including icons and
+                designs, are used under appropriate licenses. No copyrighted
+                material is intentionally included.
               </p>
               <p>
-                <strong>Fair Play:</strong> Play games honestly and enjoy the challenge. The app is designed to help
-                improve memory and attention skills.
+                <strong>Fair Play:</strong> Play games honestly and enjoy the
+                challenge. The app is designed to help improve memory and
+                attention skills.
               </p>
               <p>
-                <strong>Modifications:</strong> These terms may be updated. Continued use of the app constitutes
-                acceptance of any changes.
+                <strong>Modifications:</strong> These terms may be updated.
+                Continued use of the app constitutes acceptance of any changes.
               </p>
             </div>
           </div>
-        )
+        );
 
       case "support":
         return (
@@ -176,54 +194,61 @@ function SettingsModal({ type, title, onClose }: SettingsModalProps) {
             <h3 className="text-lg font-bold">Support</h3>
             <div className="space-y-3 font-semibold">
               <p>
-                <strong>How to Play:</strong> Complete levels by matching cards in memory games or finding target icons
-                in attention games. Progress through 30 levels and play infinite modes.
+                <strong>How to Play:</strong> Complete levels by matching cards
+                in memory games or finding target icons in attention games.
+                Progress through 30 levels and play infinite modes.
               </p>
               <p>
-                <strong>Scoring:</strong> Earn stars based on performance. Complete stages in infinite modes to gain
-                points and advance through leagues.
+                <strong>Scoring:</strong> Earn stars based on performance.
+                Complete stages in infinite modes to gain points and advance
+                through leagues.
               </p>
               <p>
-                <strong>Troubleshooting:</strong> If you experience issues, try refreshing the page. Your progress is
-                automatically saved locally.
+                <strong>Troubleshooting:</strong> If you experience issues, try
+                refreshing the page. Your progress is automatically saved
+                locally.
               </p>
               <p>
-                <strong>Reset Progress:</strong> To start over, clear your browser's local storage for this site. This
-                will remove all saved progress.
+                <strong>Reset Progress:</strong> To start over, clear your
+                browser's local storage for this site. This will remove all
+                saved progress.
               </p>
             </div>
           </div>
-        )
+        );
 
       case "share":
         return (
           <div className="space-y-4 text-sm text-card-foreground">
-            <h3 className="text-lg font-bold">Share SportMind</h3>
+            <h3 className="text-lg font-bold">Share One Lead</h3>
             <div className="space-y-3 font-semibold">
               <p>
-                <strong>Tell Your Friends:</strong> SportMind is a fun way to train memory and attention skills with
-                sports-themed games.
+                <strong>Tell Your Friends:</strong> One Lead is a fun way to
+                train memory and attention skills with sports-themed games.
               </p>
               <p>
-                <strong>Challenge Others:</strong> Compare your high scores and league rankings with friends and family.
+                <strong>Challenge Others:</strong> Compare your high scores and
+                league rankings with friends and family.
               </p>
               <p>
-                <strong>Educational Benefits:</strong> Regular play can help improve cognitive skills, memory retention,
-                and visual attention.
+                <strong>Educational Benefits:</strong> Regular play can help
+                improve cognitive skills, memory retention, and visual
+                attention.
               </p>
               <div className="cartoon-card p-3 bg-muted">
                 <p className="text-center font-bold text-muted-foreground">
-                  "Train your mind with SportMind - the ultimate memory and attention game!"
+                  "Train your mind with One Lead - the ultimate memory and
+                  attention game!"
                 </p>
               </div>
             </div>
           </div>
-        )
+        );
 
       default:
-        return null
+        return null;
     }
-  }
+  };
 
   return (
     <motion.div
@@ -244,7 +269,10 @@ function SettingsModal({ type, title, onClose }: SettingsModalProps) {
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-black text-card-foreground">{title}</h2>
-          <button onClick={onClose} className="cartoon-button p-2 bg-muted hover:bg-muted/80 rounded-xl">
+          <button
+            onClick={onClose}
+            className="cartoon-button p-2 bg-muted hover:bg-muted/80 rounded-xl"
+          >
             <X className="w-5 h-5 text-muted-foreground" />
           </button>
         </div>
@@ -253,10 +281,13 @@ function SettingsModal({ type, title, onClose }: SettingsModalProps) {
         <div className="mb-6">{getModalContent()}</div>
 
         {/* Close button */}
-        <button onClick={onClose} className="w-full cartoon-button py-3 bg-primary text-primary-foreground font-bold">
+        <button
+          onClick={onClose}
+          className="w-full cartoon-button py-3 bg-primary text-primary-foreground font-bold"
+        >
           Close
         </button>
       </motion.div>
     </motion.div>
-  )
+  );
 }

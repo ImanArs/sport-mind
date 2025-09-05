@@ -27,7 +27,7 @@ export default function SportMindApp() {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <h2 className="text-xl font-bold text-foreground">Loading SportMind...</h2>
+          <h2 className="text-xl font-bold text-foreground">Loading One Lead...</h2>
         </div>
       </div>
     )

@@ -89,7 +89,7 @@ export function LevelGrid({ gameData, onGameDataUpdate }: LevelGridProps) {
         transition={{ duration: 0.6 }}
         className="text-center mb-8 pt-4"
       >
-        <h1 className="text-4xl font-black text-primary mb-2">SportMind</h1>
+        <h1 className="text-4xl font-black text-primary mb-2">One Lead</h1>
         <p className="text-muted-foreground font-semibold">
           Train your memory and attention with sports!
         </p>
