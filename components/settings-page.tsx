@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Shield, FileText, HelpCircle, Share2, X } from "lucide-react";
 
@@ -130,32 +130,32 @@ interface SettingsModalProps {
 }
 
 function SettingsModal({ type, title, onClose }: SettingsModalProps) {
+  const LINKS = useMemo(
+    () => ({
+      share: "https://apps.apple.com/us/app/one-lead/id6752237465",
+      privacy:
+        "https://www.termsfeed.com/live/462b6481-f813-45b7-91ae-6f226ccec8f9",
+      terms:
+        "https://www.termsfeed.com/live/457f6ddf-fe36-4ed9-b68a-26a738bf33f5",
+      support: "https://ghsy1by8.forms.app/support-form",
+    }),
+    []
+  );
+
+  const appShareText =
+    "Train your mind with One Lead — the ultimate memory and attention game!";
+
   const getModalContent = () => {
     switch (type) {
       case "privacy":
         return (
           <div className="space-y-4 text-sm text-card-foreground">
-            <h3 className="text-lg font-bold">Privacy Policy</h3>
-            <div className="space-y-3 font-semibold">
-              <p>
-                <strong>Data Collection:</strong> One Lead stores your game
-                progress, scores, and preferences locally on your device. We do
-                not collect or transmit personal data to external servers.
-              </p>
-              <p>
-                <strong>Local Storage:</strong> Your game data, including levels
-                completed, high scores, and profile information, is saved in
-                your browser's local storage.
-              </p>
-              <p>
-                <strong>No Tracking:</strong> We do not use cookies, analytics,
-                or tracking technologies to monitor your gameplay or behavior.
-              </p>
-              <p>
-                <strong>Data Security:</strong> Since all data is stored
-                locally, you have full control over your information. Clearing
-                your browser data will remove all game progress.
-              </p>
+            <div className="rounded-xl overflow-hidden border border-border">
+              <iframe
+                src={LINKS.privacy}
+                className="w-full h-[65vh] bg-background"
+                title="Privacy Policy"
+              />
             </div>
           </div>
         );
@@ -163,27 +163,12 @@ function SettingsModal({ type, title, onClose }: SettingsModalProps) {
       case "terms":
         return (
           <div className="space-y-4 text-sm text-card-foreground">
-            <h3 className="text-lg font-bold">Terms of Use</h3>
-            <div className="space-y-3 font-semibold">
-              <p>
-                <strong>Game Usage:</strong> One Lead is provided for
-                entertainment and educational purposes. Use the app responsibly
-                and at your own discretion.
-              </p>
-              <p>
-                <strong>Content:</strong> All game content, including icons and
-                designs, are used under appropriate licenses. No copyrighted
-                material is intentionally included.
-              </p>
-              <p>
-                <strong>Fair Play:</strong> Play games honestly and enjoy the
-                challenge. The app is designed to help improve memory and
-                attention skills.
-              </p>
-              <p>
-                <strong>Modifications:</strong> These terms may be updated.
-                Continued use of the app constitutes acceptance of any changes.
-              </p>
+            <div className="rounded-xl overflow-hidden border border-border">
+              <iframe
+                src={LINKS.terms}
+                className="w-full h-[65vh] bg-background"
+                title="Terms of Use"
+              />
             </div>
           </div>
         );
@@ -191,28 +176,12 @@ function SettingsModal({ type, title, onClose }: SettingsModalProps) {
       case "support":
         return (
           <div className="space-y-4 text-sm text-card-foreground">
-            <h3 className="text-lg font-bold">Support</h3>
-            <div className="space-y-3 font-semibold">
-              <p>
-                <strong>How to Play:</strong> Complete levels by matching cards
-                in memory games or finding target icons in attention games.
-                Progress through 30 levels and play infinite modes.
-              </p>
-              <p>
-                <strong>Scoring:</strong> Earn stars based on performance.
-                Complete stages in infinite modes to gain points and advance
-                through leagues.
-              </p>
-              <p>
-                <strong>Troubleshooting:</strong> If you experience issues, try
-                refreshing the page. Your progress is automatically saved
-                locally.
-              </p>
-              <p>
-                <strong>Reset Progress:</strong> To start over, clear your
-                browser's local storage for this site. This will remove all
-                saved progress.
-              </p>
+            <div className="rounded-xl overflow-hidden border border-border">
+              <iframe
+                src={LINKS.support}
+                className="w-full h-[65vh] bg-background"
+                title="Support"
+              />
             </div>
           </div>
         );
@@ -220,26 +189,53 @@ function SettingsModal({ type, title, onClose }: SettingsModalProps) {
       case "share":
         return (
           <div className="space-y-4 text-sm text-card-foreground">
-            <h3 className="text-lg font-bold">Share One Lead</h3>
-            <div className="space-y-3 font-semibold">
-              <p>
-                <strong>Tell Your Friends:</strong> One Lead is a fun way to
-                train memory and attention skills with sports-themed games.
-              </p>
-              <p>
-                <strong>Challenge Others:</strong> Compare your high scores and
-                league rankings with friends and family.
-              </p>
-              <p>
-                <strong>Educational Benefits:</strong> Regular play can help
-                improve cognitive skills, memory retention, and visual
-                attention.
-              </p>
-              <div className="cartoon-card p-3 bg-muted">
-                <p className="text-center font-bold text-muted-foreground">
-                  "Train your mind with One Lead - the ultimate memory and
-                  attention game!"
-                </p>
+            <div className="space-y-4 font-semibold">
+              <p>{appShareText}</p>
+              <div className="cartoon-card p-3 bg-muted break-all">
+                <a
+                  href={LINKS.share}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-primary underline"
+                >
+                  {LINKS.share}
+                </a>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <button
+                  onClick={async () => {
+                    try {
+                      if (navigator.share) {
+                        await navigator.share({
+                          title: "One Lead",
+                          text: appShareText,
+                          url: LINKS.share,
+                        });
+                      } else {
+                        await navigator.clipboard.writeText(LINKS.share);
+                        alert("Link copied to clipboard");
+                      }
+                    } catch (e) {
+                      // ignore cancellation
+                    }
+                  }}
+                  className="cartoon-button py-3 bg-primary text-primary-foreground font-bold"
+                >
+                  Share
+                </button>
+                <button
+                  onClick={async () => {
+                    try {
+                      await navigator.clipboard.writeText(LINKS.share);
+                      alert("Link copied to clipboard");
+                    } catch (e) {
+                      // no clipboard access
+                    }
+                  }}
+                  className="cartoon-button py-3 bg-secondary text-secondary-foreground font-bold"
+                >
+                  Copy Link
+                </button>
               </div>
             </div>
           </div>
